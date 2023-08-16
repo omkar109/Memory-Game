@@ -1,0 +1,51 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    height:95vh;
+}
+
+div{
+    /* border: 1px solid black; */
+}
+
+.header{
+    display:flex;
+    flex: auto;
+    height:7%;
+}
+
+.content{
+    display:flex;
+    flex:auto;
+    height:93%;
+}
+
+.leftSidebar{
+    display:flex;
+    flex-direction: column;
+    flex:auto;
+    width: 20%;
+    height: 100%;
+}
+
+.grid{
+    display:flex;
+    flex-wrap:wrap;
+    flex:auto;
+    width: 60%;
+    height:100%;
+}
+
+.gridSquare{
+    width:33%;
+    height:33%;
+    flex:none;
+}
+
+.rightSidebar{
+    display:flex;
+    flex-direction: column;
+    flex:auto;
+    width:20%;
+    height:100%;
+}
