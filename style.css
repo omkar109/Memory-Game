@@ -58,5 +58,5 @@ div{
 .lightUp{
     /* this only has one style property because multiple will trigger multiple transitionend events
     which will mess up the javascript*/
-    background-color:turquoise;
+    background-color:orange;
 }
