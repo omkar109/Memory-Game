@@ -1,23 +1,26 @@
 .container{
     display:flex;
     flex-direction: column;
-    height:95vh;
+    height:100vh;
+    width:100vw;
 }
 
 div{
-    /* border: 1px solid black; */
+    outline: 2px solid black;
+    background-color: skyblue;
 }
 
 .header{
     display:flex;
     flex: auto;
-    height:7%;
+    height:15%;
+    justify-content:center;
 }
 
 .content{
     display:flex;
     flex:auto;
-    height:93%;
+    height:85%;
 }
 
 .leftSidebar{
@@ -36,10 +39,12 @@ div{
     height:100%;
 }
 
+
 .gridSquare{
-    width:33%;
-    height:33%;
+    width:33.3333%;
+    height:33.3333%;
     flex:none;
+    transition: all .50s ease;
 }
 
 .rightSidebar{
@@ -48,4 +53,9 @@ div{
     flex:auto;
     width:20%;
     height:100%;
+}
+
+.lightUp{
+    transform:scale(1.1);
+    background-color:turquoise;
 }
