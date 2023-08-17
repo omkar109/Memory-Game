@@ -6,17 +6,15 @@ beginSequence.addEventListener('click', generateSquaresArray);
 
 
 function generateSquaresArray(){
-    squares[3].addEventListener('transitionend', function transition(e){
-        transitionToNextSquare(e, [3, 8, 4, 1], 0);
-    });
-    squares[3].classList.add("lightUp");
+    squares[2].addEventListener('transitionend', function transition(e){
+        transitionToNextSquare(e, [2, 3, 5, 6, 3, 4, 8, 2, 1, 0, 4, 3], 0);
+    }, {once:true});
+    squares[2].classList.add("lightUp");
     
 }
 
-
 function transitionToNextSquare(e, arr, index){
-    if(e.propertyName !== "transform"){return; }
-    squares[arr[index]].style.transition = "none";
+    if(e.propertyName !== "background-color"){return; }
     e.target.classList.remove("lightUp");
     if(index == arr.length - 1){
         return;
@@ -24,7 +22,7 @@ function transitionToNextSquare(e, arr, index){
     else{
         squares[arr[index+1]].addEventListener('transitionend', function transition(eN){
             transitionToNextSquare(eN,  arr, index+1);
-        });
+        }, {once:true});
         squares[arr[index+1]].classList.add("lightUp");
     }
     

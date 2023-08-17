@@ -56,6 +56,7 @@ div{
 }
 
 .lightUp{
-    transform:scale(1.1);
+    /* this only has one style property because multiple will trigger multiple transitionend events
+    which will mess up the javascript*/
     background-color:turquoise;
 }
