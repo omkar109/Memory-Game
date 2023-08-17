@@ -1,10 +1,12 @@
 //                                  Code for showing sequence of lights
 let metaObj = {
     sequenceArray: [],
-    userEntryArray: [],
     userEntryIndex: 0,
     currLevel: 1,
+    highScore: 0,
 }
+rightSidebar = document.querySelector(".rightSidebar");
+rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
 
 squares = document.querySelectorAll(".gridSquare");
 
@@ -15,8 +17,13 @@ function generateSquaresArray(){
     //Randomize the array generation
     metaObj.sequenceArray = [];
     for(let i = 0; i < metaObj.currLevel; i++){
-        metaObj.sequenceArray.push(Math.floor(Math.random() * 9))
+        let num = Math.floor(Math.random() * 9);
+        while(i >=1 && num == metaObj.sequenceArray[i-1]){
+            num = Math.floor(Math.random() * 9);
+        }
+        metaObj.sequenceArray.push(num);
     }
+    console.log(metaObj.sequenceArray);
     squares[metaObj.sequenceArray[0]].addEventListener('transitionend', function transition(e){
         transitionToNextSquare(e, metaObj.sequenceArray, 0);
     }, {once:true});
@@ -27,6 +34,7 @@ function generateSquaresArray(){
 function transitionToNextSquare(e, arr, index){
     if(e.propertyName !== "background-color"){return; }
     e.target.classList.remove("lightUp");
+    console.log("removed");
     if(index == arr.length - 1){
         metaObj.currLevel++;
         return;
@@ -51,19 +59,37 @@ enterButton.addEventListener('click', () => {
 });
 
 function registerEntry(e){
-    console.log(parseInt(e.target.classList[0].charAt(4)));
-    console.log(metaObj.sequenceArray, metaObj.userEntryIndex);
+    //If a guess is wrong
     if(parseInt(e.target.classList[0].charAt(4)) !== metaObj.sequenceArray[metaObj.userEntryIndex]){
-        alert("You lose!");
+        alert("You lose!"); 
+        //Reset game
+        metaObj.userEntryIndex = 0;
+        metaObj.currLevel = 1;
     }
+    //If a guess is correct
     else{
+        squares[metaObj.sequenceArray[metaObj.userEntryIndex]].addEventListener('transitionend', removeText);
+        e.target.textContent = "Correct";
+        squares[metaObj.sequenceArray[metaObj.userEntryIndex]].classList.add("correct");
+        //If its the last guess of a sequence
         if(metaObj.userEntryIndex == metaObj.sequenceArray.length - 1){
-            console.log("Correct");
             metaObj.userEntryIndex = 0;
+            //If a high score was reached  
+            if(metaObj.currLevel - 1 > metaObj.highScore){
+                metaObj.highScore = metaObj.currLevel - 1;
+                rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
+            }
+            
         }
         else{
             metaObj.userEntryIndex++;
         }
         
     }
+}
+
+removeText = function(e){
+    e.target.classList.remove("correct");
+    e.target.textContent = "";
+    e.target.removeEventListener('transitionend', removeText);
 }

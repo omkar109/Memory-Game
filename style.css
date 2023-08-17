@@ -45,6 +45,8 @@ div{
     height:33.3333%;
     flex:none;
     transition: all .50s ease;
+    text-align: center;
+    
 }
 
 .rightSidebar{
@@ -53,10 +55,16 @@ div{
     flex:auto;
     width:20%;
     height:100%;
+    text-align:center;
+    font-size: 30px;
 }
 
 .lightUp{
     /* this only has one style property because multiple will trigger multiple transitionend events
     which will mess up the javascript*/
     background-color:orange;
+}
+
+.correct{
+    font-size:20px;
 }
