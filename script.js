@@ -18,8 +18,15 @@ function generateSquaresArray(){
     metaObj.sequenceArray = [];
     for(let i = 0; i < metaObj.currLevel; i++){
         let num = Math.floor(Math.random() * 9);
-        while(i >=1 && num == metaObj.sequenceArray[i-1]){
-            num = Math.floor(Math.random() * 9);
+        if(i >= 2){
+            while(num == metaObj.sequenceArray[i-1] || num == metaObj.sequenceArray[i-2]){
+                num = Math.floor(Math.random() * 9);
+            }
+        }
+        else if (i == 1){
+            while(num == metaObj.sequenceArray[i-1]){
+                num = Math.floor(Math.random() * 9);
+            }
         }
         metaObj.sequenceArray.push(num);
     }

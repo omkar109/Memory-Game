@@ -6,8 +6,10 @@
 }
 
 div{
-    outline: 2px solid black;
-    background-color: skyblue;
+    outline: 10px solid #badb24;
+    background-color: rgb(24, 21, 187);
+    color:#badb24;
+    font-family: monospace;
 }
 
 .header{
@@ -29,6 +31,7 @@ div{
     flex:auto;
     width: 20%;
     height: 100%;
+    gap:10px;
 }
 
 .grid{
