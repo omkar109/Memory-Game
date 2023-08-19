@@ -16,7 +16,32 @@ div{
     display:flex;
     flex: auto;
     height:15%;
-    justify-content:center;
+    justify-content:flex-end;
+}
+
+.leftHeader{
+    display:flex;
+    flex:auto;
+    outline:none;
+    justify-content: flex-end;
+}
+
+.rightHeader{
+    display:flex;
+    flex:auto;
+    font-size:60px;
+    align-self: center;
+    outline: none;
+    justify-content: flex-end;
+}
+.instructions{
+    flex:none;
+    outline:none;
+    margin-right:20px;
+}
+
+h1{
+    flex:none;
 }
 
 .content{

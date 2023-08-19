@@ -11,7 +11,7 @@ rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
 squares = document.querySelectorAll(".gridSquare");
 
 beginSequence = document.querySelector(".beginSequence");
-beginSequence.addEventListener('click', generateSquaresArray);
+beginSequence.addEventListener('click', generateSquaresArray,{once:true});
 
 function generateSquaresArray(){
     //Randomize the array generation
@@ -42,10 +42,15 @@ function transitionToNextSquare(e, arr, index){
     if(e.propertyName !== "background-color"){return; }
     e.target.classList.remove("lightUp");
     console.log("removed");
+    //If this is the last square
     if(index == arr.length - 1){
         metaObj.currLevel++;
+        squares.forEach(element => {
+            element.addEventListener('click', registerEntry);
+        });
         return;
     }
+    //If there are more squares in the sequence
     else{
         squares[arr[index+1]].addEventListener('transitionend', function transition(eN){
             transitionToNextSquare(eN,  arr, index+1);
@@ -58,34 +63,40 @@ function transitionToNextSquare(e, arr, index){
 
 //                                 Code for entering in sequence of lights
 
-enterButton = document.querySelector(".enterSequence");
-enterButton.addEventListener('click', () => {
-    squares.forEach(element => {
-        element.addEventListener('click', registerEntry);
-    });
-});
+// enterButton = document.querySelector(".enterSequence");
+// enterButton.addEventListener('click', () => {
+    
+// });
 
 function registerEntry(e){
     //If a guess is wrong
     if(parseInt(e.target.classList[0].charAt(4)) !== metaObj.sequenceArray[metaObj.userEntryIndex]){
         alert("You lose!"); 
         //Reset game
+        squares.forEach(element => {
+            element.removeEventListener('click', registerEntry);
+        });
+        beginSequence.addEventListener('click', generateSquaresArray,{once:true});
         metaObj.userEntryIndex = 0;
         metaObj.currLevel = 1;
     }
     //If a guess is correct
     else{
         squares[metaObj.sequenceArray[metaObj.userEntryIndex]].addEventListener('transitionend', removeText);
-        e.target.textContent = "Correct";
+        e.target.textContent = `Correct ${metaObj.userEntryIndex+1}/${metaObj.sequenceArray.length}`;
         squares[metaObj.sequenceArray[metaObj.userEntryIndex]].classList.add("correct");
         //If its the last guess of a sequence
         if(metaObj.userEntryIndex == metaObj.sequenceArray.length - 1){
             metaObj.userEntryIndex = 0;
+            squares.forEach(element => {
+                element.removeEventListener('click', registerEntry);
+            });
             //If a high score was reached  
             if(metaObj.currLevel - 1 > metaObj.highScore){
                 metaObj.highScore = metaObj.currLevel - 1;
                 rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
             }
+            setTimeout(generateSquaresArray, 2000);
             
         }
         else{
