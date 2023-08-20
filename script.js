@@ -111,3 +111,24 @@ removeText = function(e){
     e.target.textContent = "";
     e.target.removeEventListener('transitionend', removeText);
 }
+
+//                                            Code for the modal
+
+instructionsBox = document.getElementById("modal-btn");
+instructionsModal = document.querySelector(".modal-content")
+closeButton = document.querySelector(".close-btn")
+
+instructionsBox.addEventListener('click', () => {
+    instructionsModal.style.display = "block";
+})
+
+closeButton.addEventListener('click', () => {
+    instructionsModal.style.display = "none";
+})
+
+
+
+//Left to implement:
+//Author and github link in bottom right
+//Easy and hard mode to made squares flash quicker
+//Make it look better

@@ -34,10 +34,37 @@ div{
     outline: none;
     justify-content: flex-end;
 }
-.instructions{
+
+#modal-btn{
     flex:none;
     outline:none;
     margin-right:20px;
+}
+ 
+h3{
+    margin:3px;
+}
+.modal-content{
+    display: none;
+    width:400px;
+    height:150px;
+    position:absolute;
+    left: 473px; 
+    top: 170px;
+    padding:10px;
+    /* position: relative; 
+    background-color: white;
+    margin:auto;
+    padding: 20px; 
+    width: 75%;  
+    height:72%; */
+}
+
+.close-btn {
+    float: right; 
+    color: lightgray; 
+    font-size: 24px;  
+    font-weight: bold;
 }
 
 h1{
