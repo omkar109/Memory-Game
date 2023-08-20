@@ -5,8 +5,8 @@ let metaObj = {
     currLevel: 1,
     highScore: 0,
 }
-rightSidebar = document.querySelector(".rightSidebar");
-rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
+highScore = document.querySelector(".highScore");
+highScore.textContent = `High Score: ${metaObj.highScore}`;
 
 squares = document.querySelectorAll(".gridSquare");
 
@@ -94,7 +94,7 @@ function registerEntry(e){
             //If a high score was reached  
             if(metaObj.currLevel - 1 > metaObj.highScore){
                 metaObj.highScore = metaObj.currLevel - 1;
-                rightSidebar.textContent = `High Score: ${metaObj.highScore}`;
+                highScore.textContent = `High Score: ${metaObj.highScore}`;
             }
             setTimeout(generateSquaresArray, 2000);
             
@@ -129,6 +129,5 @@ closeButton.addEventListener('click', () => {
 
 
 //Left to implement:
-//Author and github link in bottom right
 //Easy and hard mode to made squares flash quicker
 //Make it look better

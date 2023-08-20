@@ -107,11 +107,30 @@ h1{
 .rightSidebar{
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
     flex:auto;
     width:20%;
     height:100%;
     text-align:center;
     font-size: 30px;
+}
+
+.highScore{
+    margin-top: 10px;
+    width:100%;
+    height:20%;
+    outline:none;
+}
+
+.credits{
+    font-size:15px;
+    width: 100%;
+    height:20%;
+    outline:none;
+}
+
+a{
+    color:#badb24;
 }
 
 .lightUp{
