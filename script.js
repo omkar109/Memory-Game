@@ -4,6 +4,7 @@ let metaObj = {
     userEntryIndex: 0,
     currLevel: 1,
     highScore: 0,
+    hardMode: false,
 }
 highScore = document.querySelector(".highScore");
 highScore.textContent = `High Score: ${metaObj.highScore}`;
@@ -46,6 +47,9 @@ function transitionToNextSquare(e, arr, index){
     if(index == arr.length - 1){
         metaObj.currLevel++;
         squares.forEach(element => {
+            if(metaObj.hardMode){
+                element.style.transition = "all .50s ease";
+            }
             element.addEventListener('click', registerEntry);
         });
         return;
@@ -63,10 +67,6 @@ function transitionToNextSquare(e, arr, index){
 
 //                                 Code for entering in sequence of lights
 
-// enterButton = document.querySelector(".enterSequence");
-// enterButton.addEventListener('click', () => {
-    
-// });
 
 function registerEntry(e){
     //If a guess is wrong
@@ -85,10 +85,15 @@ function registerEntry(e){
         squares[metaObj.sequenceArray[metaObj.userEntryIndex]].addEventListener('transitionend', removeText);
         e.target.textContent = `Correct ${metaObj.userEntryIndex+1}/${metaObj.sequenceArray.length}`;
         squares[metaObj.sequenceArray[metaObj.userEntryIndex]].classList.add("correct");
+
         //If its the last guess of a sequence
         if(metaObj.userEntryIndex == metaObj.sequenceArray.length - 1){
             metaObj.userEntryIndex = 0;
+            //If on hard mode
             squares.forEach(element => {
+                if(metaObj.hardMode){
+                    element.style.transition = "all .1s ease";
+                }
                 element.removeEventListener('click', registerEntry);
             });
             //If a high score was reached  
@@ -126,8 +131,24 @@ closeButton.addEventListener('click', () => {
     instructionsModal.style.display = "none";
 })
 
+//                                      Code to change from easy and hard mode
+easyMode = document.querySelector(".easy");
+hardMode = document.querySelector(".hard");
+
+easyMode.addEventListener('click', () => {
+    squares.forEach((square) => {
+        square.style.transition = "all .50s ease";
+    })
+    metaObj.hardMode = false;
+})
+
+hardMode.addEventListener('click', () => {
+    squares.forEach((square) => {
+        square.style.transition = "all .1s ease";
+    })
+    metaObj.hardMode = true;
+})
 
 
 //Left to implement:
-//Easy and hard mode to made squares flash quicker
 //Make it look better
