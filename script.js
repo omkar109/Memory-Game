@@ -16,6 +16,9 @@ beginSequence.addEventListener('click', generateSquaresArray,{once:true});
 
 function generateSquaresArray(){
     //Randomize the array generation
+    squares.forEach((div) => {
+        div.style.outline = "10px solid #badb24";
+    });
     metaObj.sequenceArray = [];
     for(let i = 0; i < metaObj.currLevel; i++){
         let num = Math.floor(Math.random() * 9);
@@ -71,7 +74,11 @@ function transitionToNextSquare(e, arr, index){
 function registerEntry(e){
     //If a guess is wrong
     if(parseInt(e.target.classList[0].charAt(4)) !== metaObj.sequenceArray[metaObj.userEntryIndex]){
-        alert("You lose!"); 
+        squares.forEach((div) => div.style.outline = "10px solid red");
+        squares[parseInt(e.target.classList[0].charAt(4))].addEventListener('transitionend', removeText);
+        e.target.textContent = `Wrong. You lose`;
+        squares[parseInt(e.target.classList[0].charAt(4))].classList.add("correct");
+        
         //Reset game
         squares.forEach(element => {
             element.removeEventListener('click', registerEntry);
@@ -89,8 +96,9 @@ function registerEntry(e){
         //If its the last guess of a sequence
         if(metaObj.userEntryIndex == metaObj.sequenceArray.length - 1){
             metaObj.userEntryIndex = 0;
-            //If on hard mode
+            
             squares.forEach(element => {
+                //If on hard mode
                 if(metaObj.hardMode){
                     element.style.transition = "all .1s ease";
                 }
@@ -151,4 +159,5 @@ hardMode.addEventListener('click', () => {
 
 
 //Left to implement:
+//Update losing animation
 //Make it look better
