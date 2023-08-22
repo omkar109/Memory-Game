@@ -6,9 +6,12 @@
 }
 
 div{
-    outline: 10px solid #badb24;
-    background-color: rgb(24, 21, 187);
-    color:#badb24;
+    /* outline: 10px solid #badb24; */
+    /* background-color: rgb(24, 21, 187); */
+    background-color: tan;
+    /* color:#badb24; */
+    color:cornflowerblue;
+    outline: 10px solid cornflowerblue;
     font-family: monospace;
 }
 
@@ -24,6 +27,7 @@ div{
     flex:auto;
     outline:none;
     justify-content: flex-end;
+    font-weight:bold;
 }
 
 .rightHeader{
@@ -95,7 +99,6 @@ h1{
     flex:none;
     transition: all .50s ease;
     text-align: center;
-    
 }
 
 .rightSidebar{
@@ -124,13 +127,13 @@ h1{
 }
 
 a{
-    color:#badb24;
+    color:cornflowerblue;
 }
 
 .lightUp{
     /* this only has one style property because multiple will trigger multiple transitionend events
     which will mess up the javascript*/
-    background-color:orange;
+    background-color:rgb(190, 14, 190);
 }
 
 .correct{

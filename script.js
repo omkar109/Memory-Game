@@ -17,7 +17,7 @@ beginSequence.addEventListener('click', generateSquaresArray,{once:true});
 function generateSquaresArray(){
     //Randomize the array generation
     squares.forEach((div) => {
-        div.style.outline = "10px solid #badb24";
+        div.style.outline = "10px solid cornflowerblue";
     });
     metaObj.sequenceArray = [];
     for(let i = 0; i < metaObj.currLevel; i++){
@@ -156,8 +156,3 @@ hardMode.addEventListener('click', () => {
     })
     metaObj.hardMode = true;
 })
-
-
-//Left to implement:
-//Update losing animation
-//Make it look better
